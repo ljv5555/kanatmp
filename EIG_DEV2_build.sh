@@ -1,20 +1,24 @@
 #!/bin/bash
 echo --- start --- running build.sh for EIG_DEV2
-
-echo svn copy https://drive.cobiidle.com/SVN/EIG/trunk https://drive.cobiidle.com/SVN/EIG/branches/EIG_DEV2_BUILD_${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
-
-
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 
+echo svn update...
 svn update . --username=EIGTeamCity --password=EIGTeamCity
+
+
+echo svn copy https://drive.cobiidle.com/SVN/EIG/trunk https://drive.cobiidle.com/SVN/EIG/branches/${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
+svn copy https://drive.cobiidle.com/SVN/EIG/trunk https://drive.cobiidle.com/SVN/EIG/branches/${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
+
+
+
 echo - - - - - - - - - -
-echo svn copy https://drive.cobiidle.com/SVN/EIG/trunk https://drive.cobiidle.com/SVN/EIG/branches/EIG_DEV2_BUILD_${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
 
 
 
 
 
-echo --- end --- running build.sh for EIG_DEV2
+echo --- end --- running build.sh for EIG_DEV2 ${BUILD_TAG}
+
 
 
 
