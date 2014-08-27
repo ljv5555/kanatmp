@@ -8,7 +8,7 @@ echo -----------------------------------
 chmod +x build.sh
 echo permissions updated 
 echo -----------------------------------
-./build.sh
+# ./build.sh
 echo --- done ---
 
  
