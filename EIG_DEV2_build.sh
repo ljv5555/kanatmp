@@ -6,8 +6,8 @@ echo svn update...
 svn update . --username=EIGTeamCity --password=EIGTeamCity
 
 
-echo svn copy https://drive.cobiidle.com/SVN/EIG/trunk https://drive.cobiidle.com/SVN/EIG/branches/${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
-svn copy https://drive.cobiidle.com/SVN/EIG/trunk https://drive.cobiidle.com/SVN/EIG/branches/${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
+echo svn copy https://drive.ciboodle.com/SVN/EIG/trunk https://drive.ciboodle.com/SVN/EIG/branches/${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
+svn copy https://drive.ciboodle.com/SVN/EIG/trunk https://drive.ciboodle.com/SVN/EIG/branches/${BUILD_TAG} --username=EIGTeamCity --password=EIGTeamCity
 
 
 
