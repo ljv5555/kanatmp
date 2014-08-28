@@ -9,7 +9,8 @@ svn copy https://drive.ciboodle.com/SVN/EIG/trunk https://drive.ciboodle.com/SVN
 echo - - - - - - - - - -
 echo -- create release --
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
-./ccadmin.sh  create-release -Dvcs.tag=${BUILD_TAG}   -Denvironment.name=devKeSp1
+export BUILD_TAG_0=`java -jar jseval.jar (new Date()).getTime()` 
+./ccadmin.sh  create-release -Dvcs.tag=$BUILD_TAG_0   -Denvironment.name=devKeSp1
 echo - - - - - - - - - -
 echo - - - - - - - - - -
 echo - - - - - - - - - -
