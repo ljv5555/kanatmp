@@ -16,7 +16,7 @@ echo - - - - - - - - - -
 echo - - - - - - - - - -
 echo - - - - - - - - - -
 echo - - - - - - - - - -
-echo --- end --- running build.sh for EIG_DEV2 ${BUILD_TAG}
+echo --- end --- running build.sh for EIG_DEV2 $BUILD_TAG_0
 
 
 # while true; do ./myserver; echo restarting; done
