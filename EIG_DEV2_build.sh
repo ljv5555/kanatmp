@@ -7,8 +7,8 @@ svn update . --username=EIGTeamCity --password=EIGTeamCity
 echo making build...
 svn copy "https://drive.ciboodle.com/SVN/EIG/trunk" "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" -m "$BUILD_TAG createdByJenkins-EIG_DEV2" --username EIGTeamCity --password EIGTeamCity
 echo - - - - - - - - - -
-echo svn switch...
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+echo svn switch to new tag ... "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG"
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 svn switch "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" --username EIGTeamCity --password EIGTeamCity
 echo -- create release --
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
