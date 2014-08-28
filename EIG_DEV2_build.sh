@@ -12,7 +12,7 @@ cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
 svn switch https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG --username=EIGTeamCity --password=EIGTeamCity
 echo -- create release --
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
-./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  --username=EIGTeamCity --password=EIGTeamCity
+./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  -Dvcs.username=EIGTeamCity -Dvcs.password=EIGTeamCity
 echo - - - - - - - - - -
 echo - - - - - - - - - -
 echo - - - - - - - - - -
