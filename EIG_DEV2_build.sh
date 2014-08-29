@@ -10,6 +10,9 @@ echo making build...
 ########################################## above this are working but commented for testing ####################
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
 pwd
+ls -al
+chmod +x /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/ccadmin.sh
+ls -al
 echo "./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"
 ./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
 
