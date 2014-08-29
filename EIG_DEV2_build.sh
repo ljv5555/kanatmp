@@ -8,6 +8,13 @@ echo running svn update...
 #w svn update . --username=EIGTeamCity --password=EIGTeamCity
 echo making build...
 ########################################## above this are working but commented for testing ####################
+echo svn switch...
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+svn switch "https://drive.ciboodle.com/SVN/EIG/trunk" --username EIGTeamCity --password EIGTeamCity
+echo svn update
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+svn update . --username=EIGTeamCity --password=EIGTeamCity
+
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
 pwd
 ls -al
