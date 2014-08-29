@@ -19,6 +19,7 @@ The job output is available here:
 
 The job can be launched here:
 
-a href="http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/buildWithParameters?token=kana+cause=launchFromURL"
+<a href="http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/build?token=kana&cause=launchFromURL">
+http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/build?token=kana&cause=launchFromURL</a>
 
 <iframe src="http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/lastBuild/console"></iframe>
