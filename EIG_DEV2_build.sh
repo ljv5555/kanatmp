@@ -24,5 +24,35 @@ echo --- end --- running build.sh for EIG_DEV2 $BUILD_TAG
 # while true; do ./myserver; echo restarting; done
 
 
+#          <param name="build-file-path" value="scripts/commands/create-tag.xml" />
+#          <param name="jvmArgs" value="-Xmx512m -Xms512m" />
+#          <param name="runnerArgs" value="-lib lib/antlib -Denvironment.name=%kana.environment.name% -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Dvcs.tag=EIG_BUILD_%system.build.number%  -Dsvn.username=%kana.svn.username% -Dsvn.password=%kana.svn.password% -verbose" />
+#          <param name="target" value="run" />
+
+#          <param name="build-file-path" value="scripts/commands/create-release.xml" />
+#          <param name="runnerArgs" value="-lib lib/antlib -Denvironment.name=%kana.environment.name% -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Dvcs.tag=EIG_BUILD_%system.build.number% -Drelease.bundle.file=%eig.bundle.location%/EIG_BUILD_%system.build.number%.zip -Drelease.name=%eig.release.name% -Dsvn.username=%kana.svn.username% -Dsvn.password=%kana.svn.password% -Drepository.password=eT3qPmbu -Drepository.username=admin" />
+#          <param name="target" value="run" />
+
+#          <param name="script.content" value="./ccadmin.sh stop-appserver -Ddefault.core.home=%eig.release.location% -Denvironment.name=%kana.environment.name%" />
+
+#          <param name="script.content" value="unzip -o EIG_BUILD_%build.number% -d %eig.release.location%" />
+
+#          <param name="script.content" value="./ccadmin.sh deploy-release -Denvironment.name=%kana.environment.name% -Ddefault.core.home=%eig.release.location% -Dvcs.tag=EIG_BUILD_%system.build.number% -Drelease.jar.file=%eig.release.location%/releases/exported-release.jar" />
+
+#          <param name="script.content" value="./ccadmin.sh stop-appserver -Ddefault.core.home=%eig.release.location% -Denvironment.name=%kana.environment.name%" />
+
+#          <param name="script.content" value="./ccadmin.sh upgrade-database -Ddefault.core.home=%eig.release.location% -Denvironment.name=%kana.environment.name%" />
+
+#          <param name="script.content" value="./ccadmin.sh start-appserver -Ddefault.core.home=%eig.release.location% -Denvironment.name=%kana.environment.name%" />
+
+#          <param name="build-file-path" value="scripts/commands/run-ccadmin-script.xml" />
+#          <param name="jvmArgs" value="-Xmx768m -Xms768m" />
+#          <param name="runnerArgs" value="-lib lib/antlib -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Denvironment.name=%kana.environment.name% -Dcommand.list=stop-solr,start-solr" />
+#          <param name="target" value="run" />
+
+#          <param name="build-file-path" value="scripts/commands/clean.xml" />
+#          <param name="runnerArgs" value="-lib lib/antlib -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Denvironment.name=%kana.environment.name%" />
+#          <param name="target" value="run" />
+
 
  
