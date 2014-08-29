@@ -23,14 +23,8 @@ pwd
 # ls -al
 chmod +x /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/ccadmin.sh
 # ls -al
-export next_cmd='echo ./ccadmin.sh \
-"create-tag" \
-"-Denvironment.name=devKeSp1"\
-"-Dvcs.tag=$BUILD_TAG"\
-"-Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1" \
-"-Dsvn.username=EIGTeamCity" \
-"-Dsvn.password=EIGTeamCity" \
-"-verbose"'
+export next_cmd="echo ./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+-Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"
 echo next_cmd:$next_cmd:next_cmd
 
 #./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
