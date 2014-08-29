@@ -26,13 +26,15 @@ http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/build?token=kana&cause=lau
 
 
 <div class="d1">
-  <div><h3>old team-city confi<build-type id="bt13" name="Create and Deploy the Release Bundle">
+  <div><h3>old team-city config file: </h3></div>
+  <div><code><pre>
   <!--
   
   
   
   -----------------------------
   
+  <build-type id="bt13" name="Create and Deploy the Release Bundle">
     <description>Tags a new release, creates a bundle from it and releases it to DEV2</description>
   <settings>
     <options>
