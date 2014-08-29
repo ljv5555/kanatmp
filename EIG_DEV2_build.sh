@@ -14,10 +14,11 @@ echo running svn update...
 
 
 
-#echo svn update
-#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
-#svn update . --username=EIGTeamCity --password=EIGTeamCity
-
+echo svn update
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+svn update . --username=EIGTeamCity --password=EIGTeamCity
+echo ...
+echo ---
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
 pwd
 # ls -al
@@ -27,7 +28,10 @@ export next_cmd="./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=$
 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"
 echo --- running cmd: --- 
 echo $next_cmd
-
+echo stopping app server...
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+./ccadmin stop-appserver -Denvironment.name=devKeSp1
+echo ... ... ...
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
 echo "#!/bin/bash" > next_cmd.sh
 echo $next_cmd >> next_cmd.sh
