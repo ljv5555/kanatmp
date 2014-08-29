@@ -6,23 +6,36 @@ export BUILD_TAG=$1
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 echo running svn update...
 #w svn update . --username=EIGTeamCity --password=EIGTeamCity
-echo making build...
+#echo making build...
 ########################################## above this are working but commented for testing ####################
 #echo svn switch...
 #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 #svn switch "https://drive.ciboodle.com/SVN/EIG/trunk" --username EIGTeamCity --password EIGTeamCity
-echo svn update
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
-svn update . --username=EIGTeamCity --password=EIGTeamCity
+
+
+
+#echo svn update
+#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+#svn update . --username=EIGTeamCity --password=EIGTeamCity
 
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
 pwd
 # ls -al
 chmod +x /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/ccadmin.sh
 # ls -al
-echo "./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"
-./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
+export next_cmd='echo ./ccadmin.sh \
+"create-tag" \
+"-Denvironment.name=devKeSp1"\
+"-Dvcs.tag=$BUILD_TAG"\
+"-Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1" \
+"-Dsvn.username=EIGTeamCity" \
+"-Dsvn.password=EIGTeamCity" \
+"-verbose"'
+echo next_cmd:$next_cmd:next_cmd
+
+#./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
 echo --- --- ran create tag command --- --- ---
+
 # -lib lib/antlib -Denvironment.name=%kana.environment.name% -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Dvcs.tag=EIG_BUILD_%system.build.number% -Drelease.bundle.file=%eig.bundle.location%/EIG_BUILD_%system.build.number%.zip -Drelease.name=%eig.release.name% -Dsvn.username=%kana.svn.username% -Dsvn.password=%kana.svn.password% -Drepository.password=eT3qPmbu -Drepository.username=admin
 
 # <param name="runnerArgs" value="-lib lib/antlib -Denvironment.name=%kana.environment.name% -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Dvcs.tag=EIG_BUILD_%system.build.number%  -Dsvn.username=%kana.svn.username% -Dsvn.password=%kana.svn.password% -verbose" />
