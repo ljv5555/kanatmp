@@ -9,4 +9,4 @@ DEV2-EIG build script runs under job:
 
 
 
-<iframe src="http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/"></iframe>
+<iframe src="/ljv5555/kanatmp"></iframe>
