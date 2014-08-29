@@ -33,6 +33,8 @@ echo "#!/bin/bash" > next_cmd.sh
 echo $next_cmd >> next_cmd.sh
 chmod +x next_cmd.sh
 ./next_cmd.sh
+######./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=jenkins-EIG_DEV2_Build-55 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
+
 echo -- ran next_cmd.sh ---
 
 
