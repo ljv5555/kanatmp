@@ -1,19 +1,39 @@
 #!/bin/bash
+# ######################################################################################
+echo "****************************** Running build: $1 ********************************"
 export BUILD_NUMBER=$1
 export BUILD_TAG=$1
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 echo running svn update...
-svn update . --username=EIGTeamCity --password=EIGTeamCity
+#w svn update . --username=EIGTeamCity --password=EIGTeamCity
 echo making build...
-svn copy "https://drive.ciboodle.com/SVN/EIG/trunk" "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" -m "$BUILD_TAG createdByJenkins-EIG_DEV2" --username EIGTeamCity --password EIGTeamCity
-echo - - - - - - - - - -
-echo svn switch to new tag ... "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG"
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
-svn switch "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" --username EIGTeamCity --password EIGTeamCity
-echo -- create release --
+########################################## above this are working but commented for testing ####################
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
-./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  -Dvcs.username=EIGTeamCity -Dvcs.password=EIGTeamCity
+pwd
+echo "./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"
+./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
+
+# <param name="runnerArgs" value="-lib lib/antlib -Denvironment.name=%kana.environment.name% -Ddefault.core.home=%system.teamcity.build.checkoutDir% -Dvcs.tag=EIG_BUILD_%system.build.number%  -Dsvn.username=%kana.svn.username% -Dsvn.password=%kana.svn.password% -verbose" />
+#          
+
+### ./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  -Dvcs.username=EIGTeamCity -Dvcs.password=EIGTeamCity
+
+
+### svn copy "https://drive.ciboodle.com/SVN/EIG/trunk" "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" -m "$BUILD_TAG createdByJenkins-EIG_DEV2" --username EIGTeamCity --password EIGTeamCity
+
+
+
+
+
+
 echo - - - - - - - - - -
+#echo svn switch to new tag ... "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG"
+#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+#svn switch "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" --username EIGTeamCity --password EIGTeamCity
+#echo -- create release --
+#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+#./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  -Dvcs.username=EIGTeamCity -Dvcs.password=EIGTeamCity
+#echo - - - - - - - - - -
 echo - - - - - - - - - -
 echo - - - - - - - - - -
 echo - - - - - - - - - -
