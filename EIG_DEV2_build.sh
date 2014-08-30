@@ -33,10 +33,8 @@ cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
 ./ccadmin stop-appserver -Denvironment.name=devKeSp1
 echo ... ... ...
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
-echo "#!/bin/bash" > next_cmd.sh
-echo $next_cmd >> next_cmd.sh
-chmod +x next_cmd.sh
-./next_cmd.sh
+echo $next_cmd
+$next_cmd
 
 ##
 echo --- running cmd 2 ---
