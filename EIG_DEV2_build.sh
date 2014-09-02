@@ -18,23 +18,29 @@ echo svn update
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 svn update . --username=EIGTeamCity --password=EIGTeamCity
 echo ...
+echo overwriting project properties
+cat config/project.properties.devKeSp1 > config/project.properties
 echo ---
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
-pwd
+# pwd
 # ls -al
 chmod +x /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/ccadmin.sh
 # ls -al
 export next_cmd="./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"
-echo --- running cmd: --- 
-echo $next_cmd
 echo stopping app server...
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
 ./ccadmin stop-appserver -Denvironment.name=devKeSp1
 echo ... ... ...
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+echo --- running cmd: --- 
 echo $next_cmd
 echo `$next_cmd`
+echo starting app server...
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+./ccadmin start-appserver -Denvironment.name=devKeSp1
+echo ... ... ...
+
 
 ##
 #echo --- running cmd 2 ---
@@ -71,7 +77,7 @@ echo `$next_cmd`
 
 
 
-echo - - - - - - - - - -
+#echo - - - - - - - - - -
 #echo svn switch to new tag ... "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG"
 #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 #svn switch "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" --username EIGTeamCity --password EIGTeamCity
@@ -79,10 +85,10 @@ echo - - - - - - - - - -
 #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
 #./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  -Dvcs.username=EIGTeamCity -Dvcs.password=EIGTeamCity
 #echo - - - - - - - - - -
-echo - - - - - - - - - -
-echo - - - - - - - - - -
-echo - - - - - - - - - -
-echo - - - - - - - - - -
+#echo - - - - - - - - - -
+#echo - - - - - - - - - -
+#echo - - - - - - - - - -
+#echo - - - - - - - - - -
 echo --- end --- running build.sh for EIG_DEV2 $BUILD_TAG
 
 
