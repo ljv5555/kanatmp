@@ -94,7 +94,7 @@ echo --- cmd 4 complete ---
 echo ----------------------
 echo --- cmd 5 ---
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
-echo ./ccadmin.sh upgrade-database -Ddefault.core.home=%eig.release.location% -Denvironment.name=%kana.environment.name%
+echo ./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1
 ./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1
 echo -------------------------------------------------------
 echo -------------------------------------------------------
