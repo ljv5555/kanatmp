@@ -1,6 +1,6 @@
 #!/bin/bash
 # ######################################################################################
-export $EIG_ENVIRONMENT_NAME=dev
+export EIG_ENVIRONMENT_NAME=dev
 echo "****************************** Running build: $1 ********************************"
 export BUILD_NUMBER=$1
 export BUILD_TAG=$1
