@@ -44,14 +44,12 @@ echo ... ... ...
 
 ##
 echo --- running cmd 2 ---
-
-export next_cmd="./ccadmin.sh create-release -lib lib/antlib -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dvcs.tag=$BUILD_TAG -Drelease.bundle.file=-Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/bundles/$BUILD_TAG.zip -Drelease.name=Resources.Releases.EIGRelease -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -Drepository.password=eT3qPmbu -Drepository.username=admin -verbose"
+export BUILD_ZIP_FILE=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/$BUILD_TAG.zip
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
-echo "#!/bin/bash" > next_cmd.sh
-echo $next_cmd >> next_cmd.sh
-chmod +x next_cmd.sh
-echo `./next_cmd.sh`
-
+echo ./ccadmin.sh create-release -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose -Drelease.bundle.filename=$BUILD_ZIP_FILE
+echo --- start ---
+./ccadmin.sh create-release -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose -Drelease.bundle.filename=$BUILD_ZIP_FILE
+echo --- end ---
 
 
 ######./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=jenkins-EIG_DEV2_Build-55 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
