@@ -1,6 +1,9 @@
 #!/bin/bash
 # ######################################################################################
 export EIG_ENVIRONMENT_NAME=dev
+echo svn cleanup...
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
+svn cleanup
 echo "****************************** Running build: $1 ********************************"
 export BUILD_NUMBER=$1
 export BUILD_TAG=$1
