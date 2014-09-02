@@ -54,18 +54,19 @@ echo --- end ---
 
 ##
 echo --- running cmd 3 ---
-echo cd =/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
-cd =/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
+
+
+
+
+
+echo cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
 mkdir $BUILD_TAG
 cd $BUILD_TAG
 echo dir=`pwd`
-echo unzip ../$BUILD_TAG -o .
-unzip ../$BUILD_TAG -o .
+echo unzip ../$BUILD_TAG
+unzip ../$BUILD_TAG
 echo --- cmd 3 complete ---
-echo `pwd`:
-ls -al /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
-ls -al /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/$BUILD_TAG/
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
 
 
 ######./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=jenkins-EIG_DEV2_Build-55 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
