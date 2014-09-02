@@ -109,6 +109,15 @@ echo server started.
 
 echo --- cmd 5 complete ---
 
+echo --- cmd 6 ---
+echo restarting solr...
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+./ccadmin.sh stop-solr -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1
+echo solr stopped.
+cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+./ccadmin.sh start-solr -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1
+echo solr started.
+
 
 
 ######./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=jenkins-EIG_DEV2_Build-55 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
