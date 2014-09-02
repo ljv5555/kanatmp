@@ -1,10 +1,17 @@
 #!/bin/bash
 # ######################################################################################
+export section="***********************************************************************"
+echo $section
+echo $section
+echo $section
 export EIG_ENVIRONMENT_NAME=dev
 echo svn cleanup...
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
 svn cleanup
 echo "****************************** Running build: $1 ********************************"
+echo $section
+echo $section
+echo $section
 export BUILD_NUMBER=$1
 export BUILD_TAG=$1
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1
@@ -38,6 +45,9 @@ echo ... ... ...
 
 ##
 echo --- running cmd 2 ---
+echo $section
+echo $section
+echo $section
 echo stopping server...
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
 ./ccadmin.sh stop-appserver -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
@@ -56,11 +66,9 @@ echo --- end cmd 2 ---
 
 ##
 echo --- running cmd 3 ---
-
-
-
-
-
+echo $section
+echo $section
+echo $section
 echo cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/
 mkdir $BUILD_TAG
@@ -77,6 +85,9 @@ echo --- cmd 3 complete ---
 
 ##
 echo --- cmd 4 ---
+echo $section
+echo $section
+echo $section
 cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
 echo ./ccadmin.sh deploy-release -Denvironment.name=$EIG_ENVIRONMENT_NAME -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  -Dvcs.tag=$BUILD_TAG -Drelease.jar.file=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/jenkins-EIG_DEV2_Build-64/releases/exported-release.jar
 ./ccadmin.sh deploy-release -Denvironment.name=$EIG_ENVIRONMENT_NAME -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  -Dvcs.tag=$BUILD_TAG -Drelease.jar.file=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/jenkins-EIG_DEV2_Build-64/releases/exported-release.jar
@@ -87,11 +98,14 @@ echo server stopped.
 echo --- cmd 4 complete ---
 echo ----------------------
 echo --- cmd 5 ---
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
-echo ./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
-./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
-echo -------------------------------------------------------
-echo -------------------------------------------------------
+echo $section
+echo $section
+echo $section
+#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+#echo ./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
+#./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
+#echo -------------------------------------------------------
+echo ------section 5 is disabled ------------
 echo -------------------------------------------------------
 echo -------------------------------------------------------
 echo -------------------------------------------------------
@@ -102,15 +116,18 @@ echo server started.
 
 
 echo --- cmd 5 complete ---
+echo $section
+echo $section
+echo $section
 
-echo --- cmd 6 ---
-echo restarting solr...
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
-./ccadmin.sh stop-solr -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
-echo solr stopped.
-cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
-./ccadmin.sh start-solr -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
-echo solr started.
+#echo --- cmd 6 ---
+#echo restarting solr...
+#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+#./ccadmin.sh stop-solr -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
+#echo solr stopped.
+#cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/
+#./ccadmin.sh start-solr -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=$EIG_ENVIRONMENT_NAME
+#echo solr started.
 
 # while true; do ./myserver; echo restarting; done
 
