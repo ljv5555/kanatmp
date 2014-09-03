@@ -1,5 +1,5 @@
 #!/bin/bash
-echo remove old files so disk won't be full...
+echo remove old files so disk wont be full...
 echo rm -vrf /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/*
 rm -vrf /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/*
 # ######################################################################################
