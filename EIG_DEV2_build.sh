@@ -1,66 +1,73 @@
 #!/bin/bash  
       
-      
+	echo ************************************************************************************
+	echo ************************************************************************************
+	echo ************************************************************************************
+    export BUILD_TAG=$1  
+    echo ***BUILD_TAG=$BUILD_TAG*** 
+    export CORE_HOME=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1      
+    echo ***CORE_HOME=$CORE_HOME***  
+    export ENVIRONMENT_NAME=devKeSp1
+	echo ***ENVIRONMENT_NAME=$ENVIRONMENT_NAME***
+	export SET_ENVIRONMENT_NAME=" -Denvironment.name=$ENVIRONMENT_NAME "
+	echo ***SET_ENVIRONMENT_NAME=$SET_ENVIRONMENT_NAME*** 
+    export BUILD_NUMBER=$1  
+	echo ***BUILD_NUMBER=$BUILD_NUMBER*** 
+	export BUILD_ZIP_FILE=$BUILD_TAG/$BUILD_TAG.zip  
+    echo ***BUILD_ZIP_FILE=$BUILD_ZIP_FILE***
+	echo " "
+	echo "The release bundle zip file will be created: $CORE_HOME/$ZIP_FILE_NAME"
+	echo " "
+	echo ************************************************************************************
+	echo ************************************************************************************
+	echo ************************************************************************************
+    echo " "
+	
     echo remove old files so disk wont be full...  
-    echo rm -vrf /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/*  
-    rm -vrf /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/*  
+    echo rm -vrf $CORE_HOME/work/*  
+    rm -vrf $CORE_HOME/work/*  
     # ######################################################################################  
     echo "****************************** Running build: $1 ********************************"  
-    export BUILD_NUMBER=$1  
-    export BUILD_TAG=$1  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  
+    cd $CORE_HOME  
     echo running svn update...  
-    #w svn update . --username=EIGTeamCity --password=EIGTeamCity  
-    #echo making build...  
-    ########################################## above this are working but commented for testing ####################  
-    #echo svn switch...  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  
-    #svn switch "https://drive.ciboodle.com/SVN/EIG/trunk" --username EIGTeamCity --password EIGTeamCity  
-      
-      
-      
     echo svn update  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  
+    cd $CORE_HOME  
     svn update . --username=EIGTeamCity --password=EIGTeamCity  
-    echo ...  
+    echo update complete  
     echo overwriting project properties  
+	### the config file here overrides the environment name; the build was still picking up EIG_LOCAL otherwise (even with it passed in to ccadmin.sh on the command line) ### 
     cat config/project.properties.devKeSp1 > config/project.properties  
     echo ---  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin  
-    # pwd  
-    # ls -al  
-    chmod +x /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/ccadmin.sh  
-    # ls -al  
-    export next_cmd="./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  
-    -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose"  
+    cd $CORE_HOME/bin  
+    chmod +x $CORE_HOME/bin/ccadmin.sh  
     echo stopping app server...  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
+    cd $CORE_HOME/bin/  
     ./ccadmin stop-appserver -Denvironment.name=devKeSp1  
-    echo ... ... ...  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
+    echo stopped...  
+    echo ./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=$CORE_HOME -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
+    ./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=$CORE_HOME -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose
+    cd $CORE_HOME/bin/  
     echo --- running cmd: ---   
-    echo $next_cmd  
-    echo `$next_cmd`  
     echo starting app server...  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
+    cd $CORE_HOME/bin/  
     ./ccadmin start-appserver -Denvironment.name=devKeSp1  
-    echo ... ... ...  
+    
+	echo ... ... ...  
       
       
     ##  
     echo --- running cmd 2 ---  
     echo stopping server...  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    ./ccadmin.sh stop-appserver -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
+    cd $CORE_HOME/bin/  
+    ./ccadmin.sh stop-appserver -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
     echo server stopped.  
-    export BUILD_ZIP_FILE=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/$BUILD_TAG.zip  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    echo ./ccadmin.sh create-release -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose -Drelease.bundle.filename=$BUILD_ZIP_FILE -Drelease.bundle.location=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/  
+    cd $CORE_HOME/bin/  
+    echo ./ccadmin.sh create-release -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=$CORE_HOME -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose -Drelease.bundle.filename=$BUILD_ZIP_FILE -Drelease.bundle.location=$CORE_HOME/work 
     echo --- start ---  
-    ./ccadmin.sh create-release -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose -Drelease.bundle.filename=$BUILD_ZIP_FILE -Drelease.bundle.location=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/  
+    ./ccadmin.sh create-release -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=$CORE_HOME -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose -Drelease.bundle.filename=$BUILD_ZIP_FILE -Drelease.bundle.location=$CORE_HOME/work  
     echo stopping server...  
-    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    ./ccadmin.sh stop-appserver -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
+    cd $CORE_HOME/bin/  
+    ./ccadmin.sh stop-appserver -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
     echo server stopped.  
     echo --- end cmd 2 ---  
       
@@ -72,43 +79,43 @@
     #  
     #  
     #  
-    #echo cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/  
+    #echo cd $CORE_HOME/work$CORE_HOME/  
+    #cd $CORE_HOME/work$CORE_HOME/  
     #mkdir $BUILD_TAG  
     #cd $BUILD_TAG  
     #echo dir=`pwd`  
     #echo unzip ../$BUILD_TAG  
     #unzip ../$BUILD_TAG  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
+    #cd $CORE_HOME/bin/  
     #echo stopping server...  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    #./ccadmin.sh stop-appserver -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
+    #cd $CORE_HOME/bin/  
+    #./ccadmin.sh stop-appserver -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
     #echo server stopped.  
     #echo --- cmd 3 complete ---  
     #  
     ###  
     #echo --- cmd 4 ---  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    #echo ./ccadmin.sh deploy-release -Denvironment.name=devKeSp1 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  -Dvcs.tag=$BUILD_TAG -Drelease.jar.file=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/jenkins-EIG_DEV2_Build-64/releases/exported-release.jar  
-    #./ccadmin.sh deploy-release -Denvironment.name=devKeSp1 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  -Dvcs.tag=$BUILD_TAG -Drelease.jar.file=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/jenkins-EIG_DEV2_Build-64/releases/exported-release.jar  
+    #cd $CORE_HOME/bin/  
+    #echo ./ccadmin.sh deploy-release -Denvironment.name=devKeSp1 -Ddefault.core.home=$CORE_HOME  -Dvcs.tag=$BUILD_TAG -Drelease.jar.file=$CORE_HOME/work$CORE_HOME/jenkins-EIG_DEV2_Build-64/releases/exported-release.jar  
+    #./ccadmin.sh deploy-release -Denvironment.name=devKeSp1 -Ddefault.core.home=$CORE_HOME  -Dvcs.tag=$BUILD_TAG -Drelease.jar.file=$CORE_HOME/work$CORE_HOME/jenkins-EIG_DEV2_Build-64/releases/exported-release.jar  
     #echo stopping server...  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    #./ccadmin.sh stop-appserver -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
+    #cd $CORE_HOME/bin/  
+    #./ccadmin.sh stop-appserver -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
     #echo server stopped.  
     #echo --- cmd 4 complete ---  
     #echo ----------------------  
     #echo --- cmd 5 ---  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    #echo ./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
-    #./ccadmin.sh upgrade-database -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
+    #cd $CORE_HOME/bin/  
+    #echo ./ccadmin.sh upgrade-database -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
+    #./ccadmin.sh upgrade-database -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
     #echo -------------------------------------------------------  
     #echo -------------------------------------------------------  
     #echo -------------------------------------------------------  
     #echo -------------------------------------------------------  
     #echo -------------------------------------------------------  
     #echo starting app-server...  
-    #cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin/  
-    #./ccadmin.sh stop-appserver -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Denvironment.name=devKeSp1  
+    #cd $CORE_HOME/bin/  
+    #./ccadmin.sh stop-appserver -Ddefault.core.home=$CORE_HOME -Denvironment.name=devKeSp1  
     #echo server started.  
     #  
     #  
@@ -116,7 +123,7 @@
     #  
     #  
     #  
-    #######./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=jenkins-EIG_DEV2_Build-55 -Ddefault.core.home=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose  
+    #######./ccadmin.sh create-tag -Denvironment.name=devKeSp1 -Dvcs.tag=jenkins-EIG_DEV2_Build-55 -Ddefault.core.home=$CORE_HOME -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose  
     #  
     #  
     ##./ccadmin.sh  create-tag    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG -Ddefault.core.home=/home/kana/   -Dsvn.username=EIGTeamCity -Dsvn.password=EIGTeamCity -verbose  
@@ -139,10 +146,10 @@
     #  
     ##echo - - - - - - - - - -  
     ##echo svn switch to new tag ... "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG"  
-    ##cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1  
+    ##cd $CORE_HOME  
     ##svn switch "https://drive.ciboodle.com/SVN/EIG/tags/$BUILD_TAG" --username EIGTeamCity --password EIGTeamCity  
     ##echo -- create release --  
-    ##cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin  
+    ##cd $CORE_HOME/bin  
     ##./ccadmin.sh  create-release    -Denvironment.name=devKeSp1 -Dvcs.tag=$BUILD_TAG  -Dvcs.username=EIGTeamCity -Dvcs.password=EIGTeamCity  
     ##echo - - - - - - - - - -  
     ##echo - - - - - - - - - -  
