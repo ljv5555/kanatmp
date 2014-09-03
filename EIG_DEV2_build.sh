@@ -1,31 +1,39 @@
 #!/bin/bash  
-      
-	echo ************************************************************************************
-	echo ************************************************************************************
-	echo ************************************************************************************
+    echo ************************************************************************************
+    echo ************************************************************************************
+    echo ************************************************************************************
+    echo "Project EIG_DEV2_Build"
+    echo "launch build at: http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/build?token=kana"
+    echo "log available at http://72.232.20.205:28080/jenkins/job/EIG_DEV2_Build/lastBuild/console"
+    echo "see: http://ljv5555.github.io/kanatmp"
+    echo ************************************************************************************
+    echo ************************************************************************************
     export BUILD_TAG=$1  
     echo ***BUILD_TAG=$BUILD_TAG*** 
     export CORE_HOME=/home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1      
     echo ***CORE_HOME=$CORE_HOME***  
     export ENVIRONMENT_NAME=devKeSp1
-	echo ***ENVIRONMENT_NAME=$ENVIRONMENT_NAME***
-	export SET_ENVIRONMENT_NAME=" -Denvironment.name=$ENVIRONMENT_NAME "
-	echo ***SET_ENVIRONMENT_NAME=$SET_ENVIRONMENT_NAME*** 
+    echo ***ENVIRONMENT_NAME=$ENVIRONMENT_NAME***
+    export SET_ENVIRONMENT_NAME=" -Denvironment.name=$ENVIRONMENT_NAME "
+    echo ***SET_ENVIRONMENT_NAME=$SET_ENVIRONMENT_NAME*** 
     export BUILD_NUMBER=$1  
-	echo ***BUILD_NUMBER=$BUILD_NUMBER*** 
-	export BUILD_ZIP_FILE=$BUILD_TAG/$BUILD_TAG.zip  
+    echo ***BUILD_NUMBER=$BUILD_NUMBER*** 
+    export BUILD_ZIP_FILE=$BUILD_TAG/$BUILD_TAG.zip  
     echo ***BUILD_ZIP_FILE=$BUILD_ZIP_FILE***
-	echo " "
-	echo "The release bundle zip file will be created: $CORE_HOME/$ZIP_FILE_NAME"
-	echo " "
-	echo ************************************************************************************
-	echo ************************************************************************************
-	echo ************************************************************************************
+    echo " "
+    echo "The release bundle zip file will be created: $CORE_HOME/$ZIP_FILE_NAME"
+    echo " "
+    echo ************************************************************************************
+    echo ************************************************************************************ 
+    echo ************************************************************************************
     echo " "
 	
     echo remove old files so disk wont be full...  
     echo rm -vrf $CORE_HOME/work/*  
     rm -vrf $CORE_HOME/work/*  
+    echo ************************************************************************************
+    echo ************************************************************************************ 
+    echo ************************************************************************************
     # ######################################################################################  
     echo "****************************** Running build: $1 ********************************"  
     cd $CORE_HOME  
@@ -51,9 +59,10 @@
     echo starting app server...  
     cd $CORE_HOME/bin/  
     ./ccadmin start-appserver -Denvironment.name=devKeSp1  
+    echo ************************************************************************************
+    echo ************************************************************************************ 
+    echo ************************************************************************************
     
-	echo ... ... ...  
-      
       
     ##  
     echo --- running cmd 2 ---  
@@ -71,6 +80,10 @@
     echo server stopped.  
     echo --- end cmd 2 ---  
       
+    echo ************************************************************************************
+    echo ************************************************************************************ 
+    echo ************************************************************************************
+    
       
     ###  
     #echo --- running cmd 3 ---  
