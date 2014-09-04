@@ -84,5 +84,16 @@
     echo ************************************************************************************ 
     echo ************************************************************************************
     
+
+echo "unzipping files..."
+unzip -d /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -o -v /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG/$BUILD_TAG*.zip
+echo "removing zip file..."
+rm -r /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG
+echo "starting app-server..."
+echo "restarting solr..."
+echo "build complete."
+
+
+
       
    
