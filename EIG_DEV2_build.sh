@@ -89,12 +89,13 @@
     echo "unzipping files..."
     unzip -d /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -o -v /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG/$BUILD_TAG*.zip
     cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+    echo ./ccadmin.sh deploy-environment -Denvironment.name=devKeSp1
     ./ccadmin.sh deploy-environment -Denvironment.name=devKeSp1
 
     echo "starting app-server..."
     cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
     ./ccadmin.sh start-appserver -Denvironment.name=devKeSp1
-    echo "restarting solr..."
+    echo "restarting solr... (uses environment.name=dev, not devKeSp1)"
     # for some reason solr uses environment named "dev"
     cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
     ./ccadmin.sh stop-solr -Denvironment.name=dev
