@@ -31,6 +31,8 @@
     echo remove old files so disk wont be full...  
     echo rm -vrf $CORE_HOME/work/*  
     rm -vrf $CORE_HOME/work/*  
+    echo "removing old zip file..."
+    rm -r /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/jenkins*
     echo ************************************************************************************
     echo ************************************************************************************ 
     echo ************************************************************************************
@@ -83,16 +85,34 @@
     echo ************************************************************************************
     echo ************************************************************************************ 
     echo ************************************************************************************
-    
+    echo -------------------------    cmd 3 - deploy environment    -------------------------
+    echo "unzipping files..."
+    unzip -d /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -o -v /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG/$BUILD_TAG*.zip
+    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+    ./ccadmin.sh deploy-environment -Denvironment.name=devKeSp1
 
-echo "unzipping files..."
-unzip -d /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1 -o -v /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG/$BUILD_TAG*.zip
-echo "removing zip file..."
-rm -r /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG
-echo "starting app-server..."
-echo "restarting solr..."
-echo "build complete."
-
+    echo "starting app-server..."
+    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+    ./ccadmin.sh start-appserver -Denvironment.name=devKeSp1
+    echo "restarting solr..."
+    # for some reason solr uses environment named "dev"
+    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+    ./ccadmin.sh stop-solr -Denvironment.name=dev
+    cd /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/bin
+    ./ccadmin.sh start-solr -Denvironment.name=dev
+    echo " "
+    echo " "
+    echo " "
+    echo ************************************************************************************
+    echo ************************************************************************************ 
+    echo ************************************************************************************
+    echo "build complete."
+    echo Archive available at /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/$BUILD_TAG/$BUILD_TAG*.zip
+    echo release jar and webserver jar available at /home/kana/KANAEnterprise/KE13R1/AgentDesktopSP1/work/
+    echo Application available at http://72.232.20.205:8180/GTConnect/UnifiedAcceptor/FrameworkDesktop.Main
+    echo ************************************************************************************
+    echo ************************************************************************************ 
+    echo ************************************************************************************
 
 
       
